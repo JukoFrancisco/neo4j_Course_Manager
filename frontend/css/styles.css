@@ -1,0 +1,579 @@
+/* ==========================================================================
+   Base Styles & Variables (Inspired by Logo Palette)
+   ========================================================================== */
+:root {
+  /* Main Branding Colors */
+  --brand-dark: #3b171c; /* Deep Maroon / Background */
+  --brand-red: #c62828; /* Crimson Red */
+  --brand-orange: #e85d04; /* Vibrant Orange */
+  --brand-yellow: #f4a261; /* Warm Gold/Yellow */
+
+  /* UI Colors */
+  --primary-color: var(--brand-orange);
+  --primary-hover: #dc2f02;
+  --sidebar-bg: var(--brand-dark);
+  --sidebar-hover: #542229;
+  --bg-color: #fcfaf8; /* Warm off-white */
+  --text-main: #2d2424; /* Deep warm gray */
+  --text-muted: #8a7c7c;
+  --border-color: #eaddd7;
+  --card-bg: #ffffff;
+
+  /* Action Colors */
+  --danger-color: var(--brand-red);
+  --danger-hover: #9b1e1e;
+  --warning-color: #eeb117;
+  --warning-hover: #d49d15;
+
+  /* Layout */
+  --sidebar-width: 260px;
+  --border-radius: 12px;
+  --shadow-sm: 0 2px 8px rgba(59, 23, 28, 0.04);
+  --shadow-md: 0 8px 16px rgba(59, 23, 28, 0.08);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+.main-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ==========================================================================
+   Sidebar Navigation
+   ========================================================================== */
+.sidebar {
+  width: var(--sidebar-width);
+  background-color: var(--sidebar-bg);
+  color: #fff;
+  position: fixed;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+.sidebar h2 {
+  padding: 28px 24px;
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 16px;
+  text-align: center;
+  color: var(--brand-yellow);
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0 16px;
+}
+
+.sidebar ul li {
+  margin-bottom: 8px;
+}
+
+.sidebar a {
+  display: flex;
+  align-items: center;
+  padding: 14px 20px;
+  color: #eedddf;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.sidebar a i {
+  width: 24px;
+  font-size: 1.1rem;
+  margin-right: 12px;
+  color: var(--brand-yellow);
+  transition: color 0.2s;
+}
+
+.sidebar a:hover {
+  background-color: var(--sidebar-hover);
+  transform: translateX(4px);
+}
+
+.sidebar a.active {
+  background-color: var(--brand-red);
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(198, 40, 40, 0.3);
+}
+
+.sidebar a.active i {
+  color: #fff;
+}
+
+/* ==========================================================================
+   Main Content Area
+   ========================================================================== */
+.main-content {
+  margin-left: var(--sidebar-width);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* Prevents flexbox blowout */
+}
+
+header {
+  background: var(--card-bg);
+  padding: 24px 40px;
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+header h1 {
+  font-size: 1.75rem;
+  color: var(--brand-dark);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.content-body {
+  padding: 32px 40px;
+  max-width: 1500px; /* Increased from 1200px to expand both sides! */
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ==========================================================================
+   Cards & Forms
+   ========================================================================== */
+.form-container,
+.list-container,
+.table-container {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 32px;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 32px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.form-container::before,
+.list-container::before,
+.table-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(
+    90deg,
+    var(--brand-red) 0%,
+    var(--brand-orange) 50%,
+    var(--brand-yellow) 100%
+  );
+}
+
+.form-container h2,
+.list-container h2,
+.table-container h2 {
+  font-size: 1.3rem;
+  margin-bottom: 24px;
+  color: var(--brand-dark);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group:nth-last-child(2),
+.form-actions {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-main);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  background-color: var(--bg-color);
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--brand-orange);
+  box-shadow: 0 0 0 4px rgba(232, 93, 4, 0.1);
+  background-color: #fff;
+}
+
+.form-group select[multiple] {
+  height: 120px;
+}
+
+.form-text {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.form-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.btn {
+  padding: 12px 28px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn i {
+  margin-right: 8px;
+}
+
+.btn-add {
+  background-color: var(--brand-orange);
+  color: #fff;
+  box-shadow: 0 4px 6px rgba(232, 93, 4, 0.2);
+}
+
+.btn-add:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(232, 93, 4, 0.3);
+}
+
+.btn-edit-submit {
+  background-color: var(--brand-red);
+  color: #fff;
+}
+
+.btn-cancel {
+  background-color: transparent;
+  color: var(--text-main);
+  border: 2px solid var(--border-color);
+}
+
+.btn-cancel:hover {
+  background-color: var(--border-color);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ==========================================================================
+   Tables (Organized & Responsive)
+   ========================================================================== */
+.table-container {
+  overflow-x: auto; /* Allows scrolling on small screens */
+}
+
+table {
+  width: 100%;
+  min-width: 1000px; /* Prevents tables from crushing together */
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 10px;
+  table-layout: fixed; /* Enforces strict column widths */
+}
+
+th {
+  background-color: var(--bg-color);
+  color: var(--brand-dark);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 16px 14px;
+  text-align: left;
+  border-bottom: 2px solid var(--border-color);
+  white-space: normal;
+  line-height: 1.3;
+  vertical-align: bottom;
+}
+
+td {
+  padding: 16px 14px;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+  font-size: 0.9rem;
+
+  /* Strict truncation for normal text */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 0; /* Magic rule to enforce fixed table boundaries */
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover td {
+  background-color: #fff6f2;
+}
+
+/* ==========================================================================
+   Table Action Buttons
+   ========================================================================== */
+th.table-actions,
+td.table-actions {
+  width: 220px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: visible;
+}
+
+.action-btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: 0 4px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ffffff !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.action-btn.btn-edit {
+  background-color: var(--warning-color) !important;
+}
+.action-btn.btn-edit:hover {
+  background-color: var(--warning-hover) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(238, 177, 23, 0.25);
+}
+.action-btn.btn-delete {
+  background-color: var(--danger-color) !important;
+}
+.action-btn.btn-delete:hover {
+  background-color: var(--danger-hover) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(198, 40, 40, 0.25);
+}
+
+.no-data,
+.error-msg {
+  text-align: center;
+  padding: 40px !important;
+  color: var(--text-muted);
+  font-style: italic;
+  background-color: var(--bg-color);
+  border-radius: 8px;
+}
+
+/* ==========================================================================
+   Toast Notifications (Top Center Dropdown)
+   ========================================================================== */
+.toast-container {
+  position: fixed;
+  top: 40px; /* Locked to the top */
+  left: 50%;
+  transform: translateX(-50%); /* Centered horizontally */
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  pointer-events: none; /* Prevents invisible container from blocking clicks */
+}
+
+.toast {
+  min-width: 320px;
+  background-color: var(--brand-dark);
+  color: #ffffff;
+  padding: 14px 28px;
+  border-radius: 50px;
+  box-shadow: 0 12px 35px rgba(59, 23, 28, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+
+  /* Smooth drop-down from the top */
+  transform: translateY(-40px) scale(0.9);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.toast.show {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.toast.success i {
+  color: var(--brand-yellow);
+  font-size: 1.3rem;
+}
+.toast.error i {
+  color: var(--brand-red);
+  font-size: 1.3rem;
+}
+
+/* ==========================================================================
+   Table Badges & Wrapping Cells (Polished Pill Design)
+   ========================================================================== */
+.wrap-cell {
+  white-space: normal !important; /* Allows wrapping */
+  /* REMOVED: max-width: none !important; (This is what caused the overlapping bug!) */
+  line-height: 1.8; /* Slightly tighter vertical spacing for badges */
+  vertical-align: middle;
+}
+
+.badge {
+  display: inline-flex; /* Keeps text inside pill perfectly centered */
+  align-items: center;
+  max-width: 100%; /* Prevents the pill from expanding past the cell */
+  background-color: #fff0e6;
+  color: var(--brand-orange);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  margin: 3px 6px 3px 0;
+  border: 1px solid rgba(232, 93, 4, 0.2);
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Truncates long names INSIDE the pill */
+}
+
+.badge.empty {
+  background-color: transparent;
+  border-style: dashed;
+  border-color: var(--border-color);
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Smart Column Sizing (To help distribute space evenly)
+   ========================================================================== */
+table {
+  width: 100%;
+  min-width: 1300px; /* Increased to give all columns plenty of room */
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 10px;
+  table-layout: fixed;
+}
+
+/* Specific tweaks for the Student table */
+#student-table th:nth-child(1) {
+  width: 120px;
+} /* Student ID */
+#student-table th:nth-child(2) {
+  width: 160px;
+} /* Name */
+#student-table th:nth-child(3) {
+  width: 200px;
+} /* Email */
+#student-table th:nth-child(4) {
+  width: 200px;
+} /* Address */
+#student-table th:nth-child(5) {
+  width: 130px;
+} /* Phone */
+#student-table th:nth-child(6) {
+  width: 130px;
+} /* DOB */
+#student-table th:nth-child(7) {
+  width: 220px;
+} /* Courses */
+
+/* Specific tweaks for the Faculty table */
+#faculty-table th:nth-child(1) {
+  width: 180px;
+} /* Name */
+#faculty-table th:nth-child(2) {
+  width: 220px;
+} /* Email */
+#faculty-table th:nth-child(3) {
+  width: 220px;
+} /* Address */
+#faculty-table th:nth-child(4) {
+  width: 180px;
+} /* Department */
+#faculty-table th:nth-child(5) {
+  width: 250px;
+} /* Courses */
+
+/* Specific tweaks for the Course table */
+#course-table th:nth-child(1) {
+  width: 120px;
+} /* Course Code */
+#course-table th:nth-child(2) {
+  width: 180px;
+} /* Course Name */
+#course-table th:nth-child(3) {
+  width: 220px;
+} /* Description */
+#course-table th:nth-child(4) {
+  width: 90px;
+} /* Credits */
+#course-table th:nth-child(5) {
+  width: 330px;
+} /* Enrolled Students   */
+#course-table th:nth-child(6) {
+  width: 160px;
+} /* Teaching Faculty */
